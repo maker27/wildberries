@@ -25,6 +25,7 @@ sqlite.exec(`
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
     slug TEXT NOT NULL,
+    short_description TEXT,
     description TEXT NOT NULL,
     price REAL NOT NULL,
     old_price REAL,
@@ -33,6 +34,9 @@ sqlite.exec(`
     image TEXT NOT NULL,
     images TEXT,
     category TEXT NOT NULL,
+    badge TEXT,
+    status TEXT NOT NULL DEFAULT 'inStock',
+    stock_note TEXT,
     characteristics TEXT NOT NULL
   );
 

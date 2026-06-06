@@ -46,6 +46,23 @@ export const useCartStore = createPersistedStore<CartState>(
         };
       }),
 
+    syncWithProducts: (products) =>
+      set((state) => {
+        const productById = new Map(products.map((product) => [product.productId, product]));
+
+        return {
+          items: state.items.flatMap((cartItem) => {
+            const product = productById.get(cartItem.productId);
+
+            if (!product) {
+              return [];
+            }
+
+            return [{ ...cartItem, title: product.title, price: product.price, image: product.image }];
+          }),
+        };
+      }),
+
     clearCart: () => set({ items: [] }),
   }),
   {

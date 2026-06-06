@@ -21,6 +21,7 @@ export function seedDatabase(db: Db): void {
           id: product.id,
           title: product.title,
           slug: product.slug,
+          shortDescription: product.shortDescription,
           description: product.description,
           price: product.price,
           oldPrice: product.oldPrice,
@@ -29,6 +30,9 @@ export function seedDatabase(db: Db): void {
           image: product.image,
           images: product.images,
           category: product.category,
+          badge: product.badge,
+          status: product.status,
+          stockNote: product.stockNote,
           characteristics: product.characteristics,
         })
         .run();

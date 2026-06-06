@@ -2,12 +2,13 @@ import { sql } from 'drizzle-orm';
 import { integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 import type { OrderStage } from '@/entities/order';
-import type { ProductCharacteristic } from '@/entities/product';
+import type { ProductCharacteristic, ProductStatus } from '@/entities/product';
 
 export const products = sqliteTable('products', {
   id: text('id').primaryKey(),
   title: text('title').notNull(),
   slug: text('slug').notNull(),
+  shortDescription: text('short_description'),
   description: text('description').notNull(),
   price: real('price').notNull(),
   oldPrice: real('old_price'),
@@ -16,6 +17,9 @@ export const products = sqliteTable('products', {
   image: text('image').notNull(),
   images: text('images', { mode: 'json' }).$type<string[]>(),
   category: text('category').notNull(),
+  badge: text('badge'),
+  status: text('status').$type<ProductStatus>().notNull().default('inStock'),
+  stockNote: text('stock_note'),
   characteristics: text('characteristics', { mode: 'json' }).$type<ProductCharacteristic[]>().notNull(),
 });
 

@@ -1,33 +1,50 @@
 'use client';
 
-import Link from 'next/link';
-
 import type { CartItem } from '@/entities/cart';
-import { routes } from '@/shared/config/routes';
 import { Button } from '@/shared/ui/button/Button';
 
 import { useAddToCart } from '../model/useAddToCart';
 
 type AddToCartButtonProps = {
+  disabled?: boolean;
   fullWidth?: boolean;
   item: Omit<CartItem, 'quantity'>;
 };
 
-export function AddToCartButton({ fullWidth = true, item }: AddToCartButtonProps) {
-  const { quantity, addToCart } = useAddToCart(item);
+const stepperButtonClass =
+  'add-to-cart__step flex h-11 w-11 items-center justify-center rounded-lg text-xl leading-none text-[#cb11ab] transition-colors hover:bg-white active:bg-white';
+
+export function AddToCartButton({ disabled = false, fullWidth = true, item }: AddToCartButtonProps) {
+  const { quantity, addToCart, increment, decrement } = useAddToCart(item);
+
+  if (disabled) {
+    return (
+      <Button disabled fullWidth={fullWidth}>
+        Нет в наличии
+      </Button>
+    );
+  }
 
   if (quantity > 0) {
     return (
-      <div className="add-to-cart flex items-center gap-2">
-        <Button fullWidth={fullWidth} onClick={addToCart} variant="secondary">
-          В корзине: {quantity}
-        </Button>
-        <Link
-          className="add-to-cart__link text-sm font-medium text-[#cb11ab] hover:underline"
-          href={routes.cart}
+      <div className="add-to-cart add-to-cart--in-cart flex h-11 w-full items-center justify-between rounded-lg bg-[#f3e8f5]">
+        <button
+          aria-label="Уменьшить количество"
+          className={stepperButtonClass}
+          onClick={decrement}
+          type="button"
         >
-          Открыть
-        </Link>
+          −
+        </button>
+        <span className="add-to-cart__count text-base font-semibold text-[#1a1a1a]">{quantity}</span>
+        <button
+          aria-label="Увеличить количество"
+          className={stepperButtonClass}
+          onClick={increment}
+          type="button"
+        >
+          +
+        </button>
       </div>
     );
   }

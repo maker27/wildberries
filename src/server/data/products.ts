@@ -14,6 +14,7 @@ function mapProduct(row: ProductRow): Product {
     id: row.id,
     title: row.title,
     slug: row.slug,
+    shortDescription: row.shortDescription ?? undefined,
     description: row.description,
     price: row.price,
     oldPrice: row.oldPrice ?? undefined,
@@ -22,6 +23,9 @@ function mapProduct(row: ProductRow): Product {
     image: row.image,
     images: row.images ?? undefined,
     category: row.category,
+    badge: row.badge ?? undefined,
+    status: row.status,
+    stockNote: row.stockNote ?? undefined,
     characteristics: row.characteristics,
   };
 }
