@@ -6,8 +6,8 @@ import '@/shared/styles/globals.css';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: 'Wildberries — учебный маркетплейс',
-  description: 'Учебная упрощённая копия маркетплейса на Next.js',
+  title: 'Маркетплейс Дикие ягоды',
+  description: 'Упрощённая версия маркетплейса на Next.js',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

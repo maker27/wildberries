@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { selectCartCount, useCartStore } from '@/entities/cart';
@@ -15,8 +16,9 @@ export function Header() {
   return (
     <header className="header sticky top-0 z-40 border-b border-[#ececec] bg-white">
       <Container className="header__inner flex h-16 items-center justify-between">
-        <Link className="header__logo text-xl font-bold text-[#cb11ab]" href={routes.home}>
-          WB
+        <Link className="header__logo flex items-center gap-2" href={routes.home}>
+          <Image alt="Дикие ягоды" height={32} priority src="/logo.png" width={32} />
+          <span className="header__logo-text text-xl font-bold text-[#cb11ab]">Дикие ягоды</span>
         </Link>
 
         <nav className="header__nav flex items-center gap-6 text-sm">
