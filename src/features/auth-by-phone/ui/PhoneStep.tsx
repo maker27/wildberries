@@ -5,7 +5,7 @@ import { type FormEvent, useState } from 'react';
 import { Button } from '@/shared/ui/button/Button';
 import { Input } from '@/shared/ui/input/Input';
 
-import { validatePhone } from '../model/authSchema';
+import { formatPhone, validatePhone } from '../model/authSchema';
 
 type PhoneStepProps = {
   defaultValue: string;
@@ -13,7 +13,7 @@ type PhoneStepProps = {
 };
 
 export function PhoneStep({ defaultValue, onSubmit }: PhoneStepProps) {
-  const [phone, setPhone] = useState(defaultValue);
+  const [phone, setPhone] = useState(() => formatPhone(defaultValue));
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -36,7 +36,8 @@ export function PhoneStep({ defaultValue, onSubmit }: PhoneStepProps) {
         autoComplete="tel"
         error={error ?? undefined}
         label="Номер телефона"
-        onChange={(event) => setPhone(event.target.value)}
+        inputMode="tel"
+        onChange={(event) => setPhone(formatPhone(event.target.value))}
         placeholder="+7 999 123-45-67"
         type="tel"
         value={phone}

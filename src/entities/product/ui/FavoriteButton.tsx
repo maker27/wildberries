@@ -1,12 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 
 import { cn } from '@/shared/lib/cn/cn';
 import type { WithClassName } from '@/shared/types/common';
 
 export function FavoriteButton({ className }: WithClassName) {
   const [isActive, setIsActive] = useState(false);
+
+  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsActive((prev) => !prev);
+  };
 
   return (
     <button
@@ -17,7 +23,7 @@ export function FavoriteButton({ className }: WithClassName) {
         isActive ? 'text-[#cb11ab]' : 'text-[#9a9a9a]',
         className,
       )}
-      onClick={() => setIsActive((prev) => !prev)}
+      onClick={handleButtonClick}
       type="button"
     >
       {isActive ? '♥' : '♡'}

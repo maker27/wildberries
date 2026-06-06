@@ -1,3 +1,5 @@
+'use client';
+
 import { create } from 'zustand';
 import { createJSONStorage, persist, type PersistOptions } from 'zustand/middleware';
 import type { StateCreator } from 'zustand';

@@ -1,9 +1,9 @@
+import { AUTH_COOKIE_NAME } from '@/shared/config/auth';
 import { createPersistedStore } from '@/shared/lib/storage/createPersistedStore';
 
 import type { User } from './types';
 
-const USER_STORAGE_KEY = 'wb-user';
-export const AUTH_COOKIE_NAME = 'wb-auth';
+const USER_STORAGE_KEY = 'market-user';
 const AUTH_COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
 type UserState = {

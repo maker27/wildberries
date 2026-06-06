@@ -2,7 +2,7 @@ import { createPersistedStore } from '@/shared/lib/storage/createPersistedStore'
 
 import type { CartState } from './types';
 
-const CART_STORAGE_KEY = 'wb-cart';
+const CART_STORAGE_KEY = 'market-cart';
 const MIN_QUANTITY = 1;
 
 export const useCartStore = createPersistedStore<CartState>(
