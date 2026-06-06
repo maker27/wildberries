@@ -6,7 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,mjs}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
@@ -28,6 +41,13 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "drizzle-kit": "^0.30.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.5.19",
+    "eslint-config-prettier": "^9.1.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4.0.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"

@@ -3,7 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ORDER_STAGE_NOTIFICATION, type OrderStage } from '@/entities/order';
-import { requestNotificationPermission, showBrowserNotification } from '@/shared/lib/notifications/notifications';
+import {
+  requestNotificationPermission,
+  showBrowserNotification,
+} from '@/shared/lib/notifications/notifications';
 
 type UseOrderStageNotificationResult = {
   inAppMessage: string | null;

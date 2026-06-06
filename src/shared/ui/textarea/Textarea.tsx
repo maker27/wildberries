@@ -24,7 +24,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
       <textarea
         ref={ref}
         className={cn(
-          'textarea__field min-h-24 rounded-lg border bg-white px-3 py-2 text-sm outline-none transition-colors',
+          'textarea__field min-h-24 rounded-lg border bg-white px-3 py-2 text-sm transition-colors outline-none',
           'focus:border-[#cb11ab]',
           error ? 'border-[#e53935]' : 'border-[#e0e0e0]',
           className,

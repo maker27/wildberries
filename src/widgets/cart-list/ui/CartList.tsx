@@ -48,12 +48,18 @@ export function CartList() {
           className="cart-list__item flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm"
           key={item.productId}
         >
-          <Link className="cart-list__image relative h-20 w-20 shrink-0 overflow-hidden rounded-lg" href={routes.product(item.productId)}>
+          <Link
+            className="cart-list__image relative h-20 w-20 shrink-0 overflow-hidden rounded-lg"
+            href={routes.product(item.productId)}
+          >
             <Image alt={item.title} className="object-cover" fill sizes="80px" src={item.image} />
           </Link>
 
           <div className="cart-list__info flex flex-1 flex-col gap-1">
-            <Link className="cart-list__title text-sm font-medium text-[#1a1a1a] hover:text-[#cb11ab]" href={routes.product(item.productId)}>
+            <Link
+              className="cart-list__title text-sm font-medium text-[#1a1a1a] hover:text-[#cb11ab]"
+              href={routes.product(item.productId)}
+            >
               {item.title}
             </Link>
             <Price className="cart-list__price text-base font-bold" value={item.price * item.quantity} />

@@ -16,7 +16,10 @@ type ProductCardProps = {
 export function ProductCard({ action, product }: ProductCardProps) {
   return (
     <article className="product-card flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-shadow hover:shadow-md">
-      <Link className="product-card__image-link relative block aspect-square" href={routes.product(product.id)}>
+      <Link
+        className="product-card__image-link relative block aspect-square"
+        href={routes.product(product.id)}
+      >
         <Image
           alt={product.title}
           className="product-card__image object-cover"
@@ -27,7 +30,10 @@ export function ProductCard({ action, product }: ProductCardProps) {
       </Link>
       <div className="product-card__body flex flex-1 flex-col gap-2 p-4">
         <ProductPrice oldPrice={product.oldPrice} price={product.price} />
-        <Link className="product-card__title text-sm font-medium text-[#1a1a1a] hover:text-[#cb11ab]" href={routes.product(product.id)}>
+        <Link
+          className="product-card__title text-sm font-medium text-[#1a1a1a] hover:text-[#cb11ab]"
+          href={routes.product(product.id)}
+        >
           {product.title}
         </Link>
         <ProductRating rating={product.rating} reviewsCount={product.reviewsCount} />

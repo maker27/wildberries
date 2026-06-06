@@ -18,7 +18,12 @@ function toOrderItem(item: CartItem): OrderItem {
   };
 }
 
-export function createOrderDto({ deliveryAddress, items, phone, userId }: CreateOrderDtoParams): CreateOrderPayload {
+export function createOrderDto({
+  deliveryAddress,
+  items,
+  phone,
+  userId,
+}: CreateOrderDtoParams): CreateOrderPayload {
   return {
     userId,
     phone,

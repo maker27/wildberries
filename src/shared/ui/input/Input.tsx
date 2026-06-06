@@ -24,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       <input
         ref={ref}
         className={cn(
-          'input__field h-10 rounded-lg border bg-white px-3 text-sm outline-none transition-colors',
+          'input__field h-10 rounded-lg border bg-white px-3 text-sm transition-colors outline-none',
           'focus:border-[#cb11ab]',
           error ? 'border-[#e53935]' : 'border-[#e0e0e0]',
           className,

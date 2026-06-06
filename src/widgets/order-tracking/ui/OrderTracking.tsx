@@ -3,12 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import {
-  ORDER_STAGES,
-  ORDER_STAGE_LABEL,
-  type Order,
-  OrderStatusBadge,
-} from '@/entities/order';
+import { ORDER_STAGES, ORDER_STAGE_LABEL, type Order, OrderStatusBadge } from '@/entities/order';
 import { useOrderStageNotification } from '@/features/order-stage-notification';
 import { routes } from '@/shared/config/routes';
 import { cn } from '@/shared/lib/cn/cn';
@@ -54,7 +49,9 @@ export function OrderTracking({ order }: OrderTrackingProps) {
     <section className="order-tracking flex flex-col gap-6">
       <header className="order-tracking__header flex flex-wrap items-center justify-between gap-3 rounded-xl bg-white p-6 shadow-sm">
         <div className="order-tracking__title-wrap flex flex-col gap-1">
-          <h1 className="order-tracking__title text-xl font-bold text-[#1a1a1a]">Заказ №{order.id.slice(0, 8)}</h1>
+          <h1 className="order-tracking__title text-xl font-bold text-[#1a1a1a]">
+            Заказ №{order.id.slice(0, 8)}
+          </h1>
           <span className="order-tracking__phone text-sm text-[#777]">{order.phone}</span>
         </div>
         <OrderStatusBadge stage={currentStage} />

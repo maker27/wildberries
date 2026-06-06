@@ -117,7 +117,10 @@ export function CheckoutForm() {
 
   if (items.length === 0) {
     return (
-      <EmptyState description="Добавьте товары в корзину, прежде чем оформлять заказ." title="Корзина пуста" />
+      <EmptyState
+        description="Добавьте товары в корзину, прежде чем оформлять заказ."
+        title="Корзина пуста"
+      />
     );
   }
 
@@ -125,17 +128,53 @@ export function CheckoutForm() {
     <form className="checkout-form grid grid-cols-1 gap-6 lg:grid-cols-3" onSubmit={handleSubmit}>
       <div className="checkout-form__fields flex flex-col gap-4 rounded-xl bg-white p-6 shadow-sm lg:col-span-2">
         <h2 className="checkout-form__section-title text-lg font-semibold text-[#1a1a1a]">Получатель</h2>
-        <Input error={errors.name} label="Имя" onChange={(event) => handleChange('name')(event.target.value)} value={fields.name} />
-        <Input error={errors.phone} label="Телефон" onChange={(event) => handleChange('phone')(event.target.value)} type="tel" value={fields.phone} />
+        <Input
+          error={errors.name}
+          label="Имя"
+          onChange={(event) => handleChange('name')(event.target.value)}
+          value={fields.name}
+        />
+        <Input
+          error={errors.phone}
+          label="Телефон"
+          onChange={(event) => handleChange('phone')(event.target.value)}
+          type="tel"
+          value={fields.phone}
+        />
 
-        <h2 className="checkout-form__section-title mt-2 text-lg font-semibold text-[#1a1a1a]">Адрес доставки</h2>
-        <Input error={errors.city} label="Город" onChange={(event) => handleChange('city')(event.target.value)} value={fields.city} />
-        <Input error={errors.street} label="Улица" onChange={(event) => handleChange('street')(event.target.value)} value={fields.street} />
+        <h2 className="checkout-form__section-title mt-2 text-lg font-semibold text-[#1a1a1a]">
+          Адрес доставки
+        </h2>
+        <Input
+          error={errors.city}
+          label="Город"
+          onChange={(event) => handleChange('city')(event.target.value)}
+          value={fields.city}
+        />
+        <Input
+          error={errors.street}
+          label="Улица"
+          onChange={(event) => handleChange('street')(event.target.value)}
+          value={fields.street}
+        />
         <div className="checkout-form__row grid grid-cols-2 gap-4">
-          <Input error={errors.house} label="Дом" onChange={(event) => handleChange('house')(event.target.value)} value={fields.house} />
-          <Input label="Квартира" onChange={(event) => handleChange('flat')(event.target.value)} value={fields.flat} />
+          <Input
+            error={errors.house}
+            label="Дом"
+            onChange={(event) => handleChange('house')(event.target.value)}
+            value={fields.house}
+          />
+          <Input
+            label="Квартира"
+            onChange={(event) => handleChange('flat')(event.target.value)}
+            value={fields.flat}
+          />
         </div>
-        <Textarea label="Комментарий к заказу" onChange={(event) => handleChange('comment')(event.target.value)} value={fields.comment} />
+        <Textarea
+          label="Комментарий к заказу"
+          onChange={(event) => handleChange('comment')(event.target.value)}
+          value={fields.comment}
+        />
       </div>
 
       <aside className="checkout-form__summary flex h-fit flex-col gap-4 rounded-xl bg-white p-6 shadow-sm">
@@ -155,7 +194,9 @@ export function CheckoutForm() {
           <Price className="text-xl font-bold" value={total} />
         </div>
         {isError ? (
-          <p className="checkout-form__error text-sm text-[#e53935]">Не удалось создать заказ. Попробуйте ещё раз.</p>
+          <p className="checkout-form__error text-sm text-[#e53935]">
+            Не удалось создать заказ. Попробуйте ещё раз.
+          </p>
         ) : null}
         <Button disabled={isLoading} fullWidth size="lg" type="submit">
           {isLoading ? 'Оформление…' : 'Перейти к оплате'}

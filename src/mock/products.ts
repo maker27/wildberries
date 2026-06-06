@@ -5,7 +5,8 @@ export const mockProducts: Product[] = [
     id: 'p1',
     title: 'Беспроводные наушники Pro',
     slug: 'wireless-headphones-pro',
-    description: 'Полноразмерные беспроводные наушники с активным шумоподавлением и временем работы до 30 часов.',
+    description:
+      'Полноразмерные беспроводные наушники с активным шумоподавлением и временем работы до 30 часов.',
     price: 7990,
     oldPrice: 11990,
     rating: 4.7,
@@ -74,7 +75,8 @@ export const mockProducts: Product[] = [
     id: 'p5',
     title: 'Механическая клавиатура TKL',
     slug: 'mechanical-keyboard-tkl',
-    description: 'Компактная механическая клавиатура без цифрового блока, hot-swap переключатели, RGB-подсветка.',
+    description:
+      'Компактная механическая клавиатура без цифрового блока, hot-swap переключатели, RGB-подсветка.',
     price: 5490,
     oldPrice: 6990,
     rating: 4.9,
@@ -108,7 +110,8 @@ export const mockProducts: Product[] = [
     id: 'p7',
     title: 'Настольная лампа LED',
     slug: 'desk-lamp-led',
-    description: 'Настольная LED-лампа с регулировкой яркости и цветовой температуры, USB-зарядка в основании.',
+    description:
+      'Настольная LED-лампа с регулировкой яркости и цветовой температуры, USB-зарядка в основании.',
     price: 1990,
     rating: 4.3,
     reviewsCount: 1,
