@@ -6,7 +6,7 @@ export const orderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createOrder: builder.mutation<Order, CreateOrderPayload>({
       query: (body) => ({
-        url: '/orders',
+        url: '/orders/',
         method: 'POST',
         body,
       }),
@@ -14,13 +14,13 @@ export const orderApi = baseApi.injectEndpoints({
     }),
 
     getOrder: builder.query<Order, string>({
-      query: (orderId) => `/orders/${orderId}`,
+      query: (orderId) => `/orders/${orderId}/`,
       providesTags: (_result, _error, orderId) => [{ type: 'Order', id: orderId }],
     }),
 
     payOrder: builder.mutation<Order, string>({
       query: (orderId) => ({
-        url: `/orders/${orderId}/pay`,
+        url: `/orders/${orderId}/pay/`,
         method: 'POST',
       }),
       invalidatesTags: (_result, _error, orderId) => [{ type: 'Order', id: orderId }],
