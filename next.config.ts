@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   output: 'standalone',
   serverExternalPackages: ['better-sqlite3'],
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
   ...(process.env.NODE_ENV === 'production' ? productionRules : null),
 };
 

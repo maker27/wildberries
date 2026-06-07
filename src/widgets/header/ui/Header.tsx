@@ -1,52 +1,34 @@
-'use client';
-
 import Link from 'next/link';
 
-import { selectCartCount, useCartStore } from '@/entities/cart';
-import { useUserStore } from '@/entities/user';
 import { routes } from '@/shared/config/routes';
 import { Container } from '@/shared/ui/container/Container';
+import { CartIcon } from '@/shared/ui/icons/CartIcon';
 import { Image } from '@/shared/ui/image/Image';
 
-export function Header() {
-  const cartCount = useCartStore(selectCartCount);
-  const user = useUserStore((state) => state.user);
-  const logout = useUserStore((state) => state.logout);
+import { CartCounter } from './CartCounter';
+import { UserMenu } from './UserMenu';
 
+// Серверный компонент: статичная разметка шапки уходит как HTML без JS.
+// Клиентские только маленькие островки — счётчик корзины и меню пользователя.
+export function Header() {
   return (
     <header className="header sticky top-0 z-40 border-b border-[#ececec] bg-white">
       <Container className="header__inner flex h-16 items-center justify-between">
         <Link className="header__logo flex items-center gap-2" href={routes.home}>
-          <Image alt="Дикие ягоды" height={32} priority src="/logo.png" width={32} />
+          <Image alt="Дикие ягоды" height={32} src="/logo.png" width={32} />
           <span className="header__logo-text text-xl font-bold text-[#cb11ab]">Дикие ягоды</span>
         </Link>
 
         <nav className="header__nav flex items-center gap-6 text-sm">
-          <Link className="header__link relative flex items-center gap-1 text-[#1a1a1a]" href={routes.cart}>
+          <Link className="header__link flex items-center gap-1.5 text-[#1a1a1a]" href={routes.cart}>
+            <span className="header__cart-icon relative inline-flex shrink-0">
+              <CartIcon className="header__icon h-5 w-5" />
+              <CartCounter />
+            </span>
             Корзина
-            {cartCount > 0 ? (
-              <span className="header__cart-count flex h-5 min-w-5 items-center justify-center rounded-full bg-[#cb11ab] px-1 text-xs font-medium text-white">
-                {cartCount}
-              </span>
-            ) : null}
           </Link>
 
-          {user ? (
-            <div className="header__user flex items-center gap-3">
-              <span className="header__phone text-[#777]">{user.phone}</span>
-              <button
-                className="header__logout text-[#cb11ab] hover:underline"
-                onClick={logout}
-                type="button"
-              >
-                Выйти
-              </button>
-            </div>
-          ) : (
-            <Link className="header__link text-[#1a1a1a]" href={routes.auth}>
-              Войти
-            </Link>
-          )}
+          <UserMenu />
         </nav>
       </Container>
     </header>

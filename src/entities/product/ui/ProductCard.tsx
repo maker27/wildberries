@@ -2,6 +2,7 @@ import { type ReactNode } from 'react';
 import Link from 'next/link';
 
 import { Image } from '@/shared/ui/image/Image';
+import { BLUR_DATA_URL } from '@/shared/ui/image/blurPlaceholder';
 import { cn } from '@/shared/lib/cn/cn';
 import { routes } from '@/shared/config/routes';
 
@@ -14,6 +15,7 @@ import { ProductStatusBadge } from './ProductStatusBadge';
 
 type ProductCardProps = {
   action?: ReactNode;
+  priority?: boolean;
   product: Product;
 };
 
@@ -25,7 +27,7 @@ function getDiscountPercent(price: number, oldPrice?: number): number | null {
   return Math.round((1 - price / oldPrice) * 100);
 }
 
-export function ProductCard({ action, product }: ProductCardProps) {
+export function ProductCard({ action, priority = false, product }: ProductCardProps) {
   const isOutOfStock = product.status === 'outOfStock';
   const discountPercent = getDiscountPercent(product.price, product.oldPrice);
 
@@ -37,9 +39,12 @@ export function ProductCard({ action, product }: ProductCardProps) {
       >
         <Image
           alt={product.title}
+          blurDataURL={BLUR_DATA_URL}
           className={cn('product-card__image object-cover', isOutOfStock && 'opacity-60 grayscale')}
           fill
-          sizes="(max-width: 768px) 50vw, 25vw"
+          placeholder="blur"
+          priority={priority}
+          sizes="(max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 64px) / 3), (max-width: 1280px) calc((100vw - 80px) / 4), 300px"
           src={product.image}
         />
         <FavoriteButton className="product-card__favorite absolute top-2 right-2" />

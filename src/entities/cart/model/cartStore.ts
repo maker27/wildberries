@@ -1,3 +1,5 @@
+'use client';
+
 import { createPersistedStore } from '@/shared/lib/storage/createPersistedStore';
 
 import type { CartState } from './types';

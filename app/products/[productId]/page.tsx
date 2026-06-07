@@ -1,8 +1,10 @@
 import { ProductDetailsPage } from '@/pages/product-details';
+import { getProducts } from '@/server/data/products';
 
-// Без force-dynamic Next целиком префетчит роут и пропускает loading.tsx —
-// страница «висит» старая. Dynamic-роут префетчится только до loading-boundary.
-export const dynamic = 'force-dynamic';
+// Каталог фиксирован в SQLite — генерируем страницы товаров статически (лучше TTFB/LCP).
+export function generateStaticParams() {
+  return getProducts().map((product) => ({ productId: product.id }));
+}
 
 type PageProps = {
   params: Promise<{ productId: string }>;

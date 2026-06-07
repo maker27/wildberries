@@ -8,6 +8,7 @@ import { RemoveFromCartButton } from '@/features/remove-from-cart';
 import { CartQuantityControl } from '@/features/update-cart-item';
 import { routes } from '@/shared/config/routes';
 import { Image } from '@/shared/ui/image/Image';
+import { BLUR_DATA_URL } from '@/shared/ui/image/blurPlaceholder';
 import { Price } from '@/shared/ui/price/Price';
 import { Spinner } from '@/shared/ui/spinner/Spinner';
 import { EmptyState } from '@/shared/ui/empty-state/EmptyState';
@@ -21,7 +22,7 @@ export function CartList() {
 
   if (!isHydrated) {
     return (
-      <div className="cart-list flex justify-center py-16">
+      <div className="cart-list flex flex-1 items-center justify-center py-16">
         <Spinner />
       </div>
     );
@@ -29,15 +30,18 @@ export function CartList() {
 
   if (items.length === 0) {
     return (
-      <EmptyState
-        action={
-          <Link href={routes.home}>
-            <Button>В каталог</Button>
-          </Link>
-        }
-        description="Добавьте товары из каталога, чтобы оформить заказ."
-        title="Корзина пуста"
-      />
+      <div className="cart-list cart-list--empty flex flex-1 items-center justify-center">
+        <EmptyState
+          action={
+            <Link href={routes.home}>
+              <Button>В каталог</Button>
+            </Link>
+          }
+          className="w-full max-w-md"
+          description="Добавьте товары из каталога, чтобы оформить заказ."
+          title="Корзина пуста"
+        />
+      </div>
     );
   }
 
@@ -52,7 +56,15 @@ export function CartList() {
             className="cart-list__image relative h-20 w-20 shrink-0 overflow-hidden rounded-lg"
             href={routes.product(item.productId)}
           >
-            <Image alt={item.title} className="object-cover" fill sizes="80px" src={item.image} />
+            <Image
+              alt={item.title}
+              blurDataURL={BLUR_DATA_URL}
+              className="object-cover"
+              fill
+              placeholder="blur"
+              sizes="80px"
+              src={item.image}
+            />
           </Link>
 
           <div className="cart-list__info flex flex-1 flex-col gap-1">

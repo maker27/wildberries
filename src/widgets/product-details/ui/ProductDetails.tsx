@@ -7,6 +7,7 @@ import {
 } from '@/entities/product';
 import { AddToCartButton } from '@/features/add-to-cart';
 import { Image } from '@/shared/ui/image/Image';
+import { BLUR_DATA_URL } from '@/shared/ui/image/blurPlaceholder';
 
 type ProductDetailsProps = {
   product: Product;
@@ -21,14 +22,16 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       <div className="product-details__gallery relative aspect-square overflow-hidden rounded-xl bg-white">
         <Image
           alt={product.title}
+          blurDataURL={BLUR_DATA_URL}
           className={
             isOutOfStock
               ? 'product-details__image object-cover opacity-60 grayscale'
               : 'product-details__image object-cover'
           }
           fill
+          placeholder="blur"
           priority
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1280px) calc((100vw - 64px) / 2), 608px"
           src={detailsImage}
         />
         {product.badge ? (

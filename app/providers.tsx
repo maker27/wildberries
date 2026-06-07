@@ -1,32 +1,18 @@
 'use client';
 
-import { type PropsWithChildren, useEffect, useRef } from 'react';
-import { Provider } from 'react-redux';
+import { type PropsWithChildren, useEffect } from 'react';
 
-import { type CartProduct, useCartStore } from '@/entities/cart';
+import { useCartStore } from '@/entities/cart';
 import { useUserStore } from '@/entities/user';
-import { type AppStore, makeStore } from '@/shared/api/store';
 
-type ProvidersProps = PropsWithChildren<{
-  cartProducts: CartProduct[];
-}>;
-
-export function Providers({ cartProducts, children }: ProvidersProps) {
-  const storeRef = useRef<AppStore | null>(null);
-
-  if (!storeRef.current) {
-    storeRef.current = makeStore();
-  }
-
+// Сторы созданы со skipHydration — на клиенте их надо рехидрировать вручную.
+// Нужно глобально: Header показывает счётчик корзины и пользователя на всех роутах.
+// Синк корзины с каталогом вынесен на /cart, чтобы не читать БД на каждом роуте.
+export function StoreRehydrator({ children }: PropsWithChildren) {
   useEffect(() => {
-    const rehydrateCart = async () => {
-      await useCartStore.persist.rehydrate();
-      useCartStore.getState().syncWithProducts(cartProducts);
-    };
-
-    void rehydrateCart();
+    void useCartStore.persist.rehydrate();
     void useUserStore.persist.rehydrate();
-  }, [cartProducts]);
+  }, []);
 
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return <>{children}</>;
 }

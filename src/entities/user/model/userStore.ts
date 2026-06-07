@@ -1,3 +1,5 @@
+'use client';
+
 import { AUTH_COOKIE_NAME } from '@/shared/config/auth';
 import { createPersistedStore } from '@/shared/lib/storage/createPersistedStore';
 
@@ -45,5 +47,13 @@ export const useUserStore = createPersistedStore<UserState>(
   {
     name: USER_STORAGE_KEY,
     partialize: (state) => ({ user: state.user }),
+    // localStorage бессрочный, а auth-cookie живёт 30 дней. Чтобы UI и серверная
+    // защита роутов (middleware) не рассинхронились, переустанавливаем cookie при
+    // восстановлении пользователя из localStorage.
+    onRehydrateStorage: () => (state) => {
+      if (state?.user) {
+        setAuthCookie();
+      }
+    },
   },
 );
