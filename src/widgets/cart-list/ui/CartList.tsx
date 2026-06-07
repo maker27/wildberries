@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { selectCartItems, useCartStore } from '@/entities/cart';
 import { RemoveFromCartButton } from '@/features/remove-from-cart';
 import { CartQuantityControl } from '@/features/update-cart-item';
 import { routes } from '@/shared/config/routes';
+import { Image } from '@/shared/ui/image/Image';
 import { Price } from '@/shared/ui/price/Price';
 import { Spinner } from '@/shared/ui/spinner/Spinner';
 import { EmptyState } from '@/shared/ui/empty-state/EmptyState';

@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
+import { Image } from '@/shared/ui/image/Image';
 import { cn } from '@/shared/lib/cn/cn';
 import { routes } from '@/shared/config/routes';
 

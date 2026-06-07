@@ -1,12 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { selectCartCount, useCartStore } from '@/entities/cart';
 import { useUserStore } from '@/entities/user';
 import { routes } from '@/shared/config/routes';
 import { Container } from '@/shared/ui/container/Container';
+import { Image } from '@/shared/ui/image/Image';
 
 export function Header() {
   const cartCount = useCartStore(selectCartCount);

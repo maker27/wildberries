@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import {
   type Product,
   ProductBadge,
@@ -8,6 +6,7 @@ import {
   ProductStatusBadge,
 } from '@/entities/product';
 import { AddToCartButton } from '@/features/add-to-cart';
+import { Image } from '@/shared/ui/image/Image';
 
 type ProductDetailsProps = {
   product: Product;
