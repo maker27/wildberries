@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { selectCartItems, selectCartTotal, useCartStore } from '@/entities/cart';
 import { useCreateOrderMutation } from '@/entities/order';
 import { useUserStore } from '@/entities/user';
+import { formatPhone } from '@/features/auth-by-phone';
 import { createOrderDto } from '@/features/create-order';
 import { routes } from '@/shared/config/routes';
 import { Button } from '@/shared/ui/button/Button';
@@ -67,7 +68,7 @@ export function CheckoutForm() {
 
   useEffect(() => {
     if (user?.phone) {
-      setFields((prev) => (prev.phone ? prev : { ...prev, phone: user.phone }));
+      setFields((prev) => (prev.phone ? prev : { ...prev, phone: formatPhone(user.phone) }));
     }
   }, [user]);
 
@@ -135,9 +136,12 @@ export function CheckoutForm() {
           value={fields.name}
         />
         <Input
+          className={user ? 'cursor-not-allowed bg-[#f7f7f7] text-[#777]' : undefined}
           error={errors.phone}
+          hint={user ? 'Телефон из вашего профиля' : undefined}
           label="Телефон"
           onChange={(event) => handleChange('phone')(event.target.value)}
+          readOnly={Boolean(user)}
           type="tel"
           value={fields.phone}
         />

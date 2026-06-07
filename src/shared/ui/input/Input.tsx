@@ -4,11 +4,12 @@ import { cn } from '@/shared/lib/cn/cn';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
+  hint?: string;
   label?: string;
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { className, error, id, label, ...rest },
+  { className, error, hint, id, label, ...rest },
   ref,
 ) {
   const generatedId = useId();
@@ -33,6 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         {...rest}
       />
       {error ? <span className="input__error text-xs text-[#e53935]">{error}</span> : null}
+      {!error && hint ? <span className="input__hint text-xs text-[#999]">{hint}</span> : null}
     </div>
   );
 });
