@@ -33,8 +33,8 @@ export function CodeStep({ phone, onBack, onSubmit }: CodeStepProps) {
 
   return (
     <form className="code-step flex flex-col gap-4" onSubmit={handleSubmit}>
-      <p className="code-step__hint text-sm text-[#777]">
-        Мы «отправили» код на номер <span className="font-medium text-[#1a1a1a]">{phone}</span>. Введите любые{' '}
+      <p className="code-step__hint text-muted text-sm">
+        Мы «отправили» код на номер <span className="text-fg font-medium">{phone}</span>. Введите любые{' '}
         {CODE_LENGTH} цифры.
       </p>
       <Input

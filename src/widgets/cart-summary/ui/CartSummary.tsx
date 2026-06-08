@@ -21,14 +21,14 @@ export function CartSummary() {
 
   return (
     <aside className="cart-summary flex w-full shrink-0 flex-col gap-4 rounded-xl bg-white p-6 shadow-sm lg:w-80">
-      <h2 className="cart-summary__title text-lg font-semibold text-[#1a1a1a]">Итого</h2>
-      <div className="cart-summary__row flex items-center justify-between text-sm text-[#777]">
+      <h2 className="cart-summary__title text-fg text-lg font-semibold">Итого</h2>
+      <div className="cart-summary__row text-muted flex items-center justify-between text-sm">
         <span>Товаров</span>
         <span>{count}</span>
       </div>
       <div className="cart-summary__row flex items-center justify-between">
-        <span className="text-[#777]">Сумма</span>
-        <Price className="cart-summary__total text-xl font-bold text-[#1a1a1a]" value={total} />
+        <span className="text-muted">Сумма</span>
+        <Price className="cart-summary__total text-fg text-xl font-bold" value={total} />
       </div>
       <Link href={routes.checkout}>
         <Button fullWidth size="lg">

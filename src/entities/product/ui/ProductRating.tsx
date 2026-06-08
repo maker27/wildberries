@@ -35,11 +35,11 @@ export function ProductRating({ className, rating, reviewsCount }: ProductRating
 
   return (
     <div className={cn('product-rating flex items-center gap-1 text-xs', className)}>
-      <span className="product-rating__star text-[#fbbf24]" aria-hidden="true">
+      <span className="product-rating__star text-rating" aria-hidden="true">
         ★
       </span>
-      <span className="product-rating__value font-semibold text-[#1a1a1a]">{formattedRating}</span>
-      <span className="product-rating__count text-[#9a9a9a]">
+      <span className="product-rating__value text-fg font-semibold">{formattedRating}</span>
+      <span className="product-rating__count text-faint">
         · {formattedCount} {pluralizeReviews(reviewsCount)}
       </span>
     </div>

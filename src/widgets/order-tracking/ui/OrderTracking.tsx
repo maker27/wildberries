@@ -38,9 +38,18 @@ export function OrderTracking({ order }: OrderTrackingProps) {
   const currentStage = calculateOrderStage(order.paidAt, now ?? undefined);
   const { inAppMessage, dismissInApp, requestPermission } = useOrderStageNotification(currentStage);
 
+  // Permission запрашиваем только по действию пользователя, не на маунте.
+  // Поддержку и статус читаем в эффекте, чтобы не было hydration mismatch.
+  const [canAskNotifications, setCanAskNotifications] = useState(false);
+
   useEffect(() => {
-    void requestPermission();
-  }, [requestPermission]);
+    setCanAskNotifications('Notification' in window && Notification.permission === 'default');
+  }, []);
+
+  const handleEnableNotifications = async () => {
+    await requestPermission();
+    setCanAskNotifications(false);
+  };
 
   const eta = now === null ? null : getNextStageEta(order.paidAt, now);
   const currentIndex = ORDER_STAGES.indexOf(currentStage);
@@ -49,17 +58,24 @@ export function OrderTracking({ order }: OrderTrackingProps) {
     <section className="order-tracking flex flex-col gap-6">
       <header className="order-tracking__header flex flex-wrap items-center justify-between gap-3 rounded-xl bg-white p-6 shadow-sm">
         <div className="order-tracking__title-wrap flex flex-col gap-1">
-          <h1 className="order-tracking__title text-xl font-bold text-[#1a1a1a]">
-            Заказ №{order.id.slice(0, 8)}
-          </h1>
-          <span className="order-tracking__phone text-sm text-[#777]">{order.phone}</span>
+          <h1 className="order-tracking__title text-fg text-xl font-bold">Заказ №{order.id.slice(0, 8)}</h1>
+          <span className="order-tracking__phone text-muted text-sm">{order.phone}</span>
         </div>
         <OrderStatusBadge stage={currentStage} />
       </header>
 
+      {canAskNotifications ? (
+        <div className="order-tracking__notify flex flex-wrap items-center justify-between gap-3 rounded-xl bg-white p-6 shadow-sm">
+          <p className="text-label text-sm">Включите уведомления, чтобы узнавать о смене статуса заказа.</p>
+          <Button onClick={handleEnableNotifications} variant="secondary">
+            Включить уведомления
+          </Button>
+        </div>
+      ) : null}
+
       {!order.paidAt ? (
         <div className="order-tracking__pay flex flex-col gap-3 rounded-xl bg-white p-6 shadow-sm">
-          <p className="text-sm text-[#444]">Заказ ещё не оплачен. Оплатите его, чтобы началась сборка.</p>
+          <p className="text-label text-sm">Заказ ещё не оплачен. Оплатите его, чтобы началась сборка.</p>
           <Link className="max-w-xs" href={routes.payment(order.id)}>
             <Button>Перейти к оплате</Button>
           </Link>
@@ -67,7 +83,7 @@ export function OrderTracking({ order }: OrderTrackingProps) {
       ) : null}
 
       {inAppMessage ? (
-        <div className="order-tracking__in-app flex items-center justify-between gap-3 rounded-xl bg-[#f7e6f3] p-4 text-sm text-[#a60d8c]">
+        <div className="order-tracking__in-app bg-accent-soft text-accent-dark flex items-center justify-between gap-3 rounded-xl p-4 text-sm">
           <span>{inAppMessage}</span>
           <button className="font-medium hover:underline" onClick={dismissInApp} type="button">
             Скрыть
@@ -85,9 +101,9 @@ export function OrderTracking({ order }: OrderTrackingProps) {
               <span
                 className={cn(
                   'order-tracking__marker flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs',
-                  isDone && 'bg-[#cb11ab] text-white',
-                  isActive && 'bg-[#cb11ab] text-white ring-4 ring-[#f7e6f3]',
-                  !isDone && !isActive && 'bg-[#eeeeee] text-[#999]',
+                  isDone && 'bg-accent text-white',
+                  isActive && 'bg-accent ring-accent-soft text-white ring-4',
+                  !isDone && !isActive && 'bg-track text-subtle',
                 )}
               >
                 {isDone ? '✓' : index + 1}
@@ -95,13 +111,13 @@ export function OrderTracking({ order }: OrderTrackingProps) {
               <span
                 className={cn(
                   'order-tracking__label text-sm',
-                  isActive ? 'font-semibold text-[#1a1a1a]' : 'text-[#777]',
+                  isActive ? 'text-fg font-semibold' : 'text-muted',
                 )}
               >
                 {ORDER_STAGE_LABEL[stage]}
               </span>
               {isActive && eta !== null ? (
-                <span className="order-tracking__eta ml-auto text-xs text-[#999]">
+                <span className="order-tracking__eta text-subtle ml-auto text-xs">
                   след. этап через {formatEta(eta)}
                 </span>
               ) : null}

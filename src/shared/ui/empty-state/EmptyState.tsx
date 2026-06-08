@@ -17,8 +17,8 @@ export function EmptyState({ action, className, description, title }: EmptyState
         className,
       )}
     >
-      <h2 className="empty-state__title text-lg font-semibold text-[#1a1a1a]">{title}</h2>
-      {description ? <p className="empty-state__description text-sm text-[#777]">{description}</p> : null}
+      <h2 className="empty-state__title text-fg text-lg font-semibold">{title}</h2>
+      {description ? <p className="empty-state__description text-muted text-sm">{description}</p> : null}
       {action ? <div className="empty-state__action mt-2">{action}</div> : null}
     </div>
   );

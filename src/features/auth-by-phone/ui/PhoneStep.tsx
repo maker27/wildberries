@@ -2,10 +2,11 @@
 
 import { type FormEvent, useState } from 'react';
 
+import { formatPhone } from '@/shared/lib/phone/phone';
 import { Button } from '@/shared/ui/button/Button';
 import { Input } from '@/shared/ui/input/Input';
 
-import { formatPhone, validatePhone } from '../model/authSchema';
+import { validatePhone } from '../model/authSchema';
 
 type PhoneStepProps = {
   defaultValue: string;

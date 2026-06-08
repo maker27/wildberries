@@ -22,7 +22,7 @@ export function ProductDetailsPage({ productId }: ProductDetailsPageProps) {
 
   return (
     <Container className="product-details-page flex flex-col gap-10 py-6">
-      <Link className="product-details-page__back text-sm text-[#cb11ab] hover:underline" href={routes.home}>
+      <Link className="product-details-page__back text-accent text-sm hover:underline" href={routes.home}>
         ← В каталог
       </Link>
       <ProductDetails product={product} />

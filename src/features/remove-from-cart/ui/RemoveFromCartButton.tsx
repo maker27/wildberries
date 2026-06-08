@@ -12,7 +12,7 @@ export function RemoveFromCartButton({ productId }: RemoveFromCartButtonProps) {
   return (
     <button
       aria-label="Удалить товар из корзины"
-      className="remove-from-cart text-sm text-[#999] transition-colors hover:text-[#e53935]"
+      className="remove-from-cart text-subtle hover:text-error text-sm transition-colors"
       onClick={() => removeItem(productId)}
       type="button"
     >

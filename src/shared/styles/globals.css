@@ -1,14 +1,45 @@
 @import 'tailwindcss';
 
-:root {
-  --color-bg: #f5f6f8;
+/* Семантическая палитра — единый источник цветов. Никаких «магических» hex в разметке. */
+@theme {
+  --color-canvas: #f5f6f8;
+  --color-fg: #1a1a1a;
+  --color-muted: #777777;
+  --color-subtle: #999999;
+  --color-faint: #9a9a9a;
+  --color-label: #444444;
+
+  --color-border: #e0e0e0;
+  --color-border-light: #f0f0f0;
+  --color-track: #eeeeee;
+
   --color-accent: #cb11ab;
+  --color-accent-dark: #a60d8c;
+  --color-accent-soft: #f7e6f3;
+  --color-accent-disabled: #d9a3d0;
+  --color-violet: #7b2cbf;
+
+  --color-error: #e53935;
+  --color-error-strong: #c62828;
+  --color-error-soft: #fdecea;
+
+  --color-success: #2e7d32;
+  --color-success-soft: #e8f5e9;
+  --color-warning: #e65100;
+  --color-warning-soft: #fff3e0;
+  --color-info: #1565c0;
+  --color-info-soft: #e3f2fd;
+  --color-purple: #6a1b9a;
+  --color-purple-soft: #f3e5f5;
+
+  --color-sale: #f5163a;
+  --color-rating: #fbbf24;
 }
 
 html,
 body {
-  background-color: var(--color-bg);
-  color: #1a1a1a;
+  background-color: var(--color-canvas);
+  color: var(--color-fg);
 }
 
 body {
@@ -18,4 +49,35 @@ body {
     'Segoe UI',
     roboto,
     sans-serif;
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
 }

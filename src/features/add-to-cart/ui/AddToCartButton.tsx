@@ -12,7 +12,7 @@ type AddToCartButtonProps = {
 };
 
 const stepperButtonClass =
-  'add-to-cart__step flex h-11 w-11 items-center justify-center rounded-lg text-xl leading-none text-[#cb11ab] transition-colors hover:bg-white active:bg-white';
+  'add-to-cart__step flex h-11 w-11 items-center justify-center rounded-lg text-xl leading-none text-accent transition-colors hover:bg-white active:bg-white';
 
 export function AddToCartButton({ disabled = false, fullWidth = true, item }: AddToCartButtonProps) {
   const { quantity, addToCart, increment, decrement } = useAddToCart(item);
@@ -27,7 +27,7 @@ export function AddToCartButton({ disabled = false, fullWidth = true, item }: Ad
 
   if (quantity > 0) {
     return (
-      <div className="add-to-cart add-to-cart--in-cart flex h-11 w-full items-center justify-between rounded-lg bg-[#f3e8f5]">
+      <div className="add-to-cart add-to-cart--in-cart bg-accent-soft flex h-11 w-full items-center justify-between rounded-lg">
         <button
           aria-label="Уменьшить количество"
           className={stepperButtonClass}
@@ -36,7 +36,7 @@ export function AddToCartButton({ disabled = false, fullWidth = true, item }: Ad
         >
           −
         </button>
-        <span className="add-to-cart__count text-base font-semibold text-[#1a1a1a]">{quantity}</span>
+        <span className="add-to-cart__count text-fg text-base font-semibold">{quantity}</span>
         <button
           aria-label="Увеличить количество"
           className={stepperButtonClass}

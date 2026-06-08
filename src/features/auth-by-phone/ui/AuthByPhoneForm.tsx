@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { MemoryRouter, Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useUserStore } from '@/entities/user';
-import { normalizePhone } from '../model/authSchema';
+import { normalizePhone } from '@/shared/lib/phone/phone';
 
 import { CodeStep } from './CodeStep';
 import { PhoneStep } from './PhoneStep';

@@ -8,7 +8,7 @@ type ReviewsListProps = {
 export function ReviewsList({ reviews }: ReviewsListProps) {
   return (
     <section className="reviews-list flex flex-col gap-4">
-      <h2 className="reviews-list__title text-xl font-semibold text-[#1a1a1a]">Отзывы</h2>
+      <h2 className="reviews-list__title text-fg text-xl font-semibold">Отзывы</h2>
 
       {reviews.length === 0 ? (
         <EmptyState description="Пока никто не оставил отзыв на этот товар." title="Отзывов пока нет" />

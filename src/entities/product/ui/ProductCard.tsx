@@ -32,7 +32,7 @@ export function ProductCard({ action, priority = false, product }: ProductCardPr
   const discountPercent = getDiscountPercent(product.price, product.oldPrice);
 
   return (
-    <article className="product-card flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
+    <article className="product-card flex flex-col">
       <Link
         className="product-card__image-link relative block aspect-square overflow-hidden rounded-2xl"
         href={routes.product(product.id)}
@@ -44,13 +44,13 @@ export function ProductCard({ action, priority = false, product }: ProductCardPr
           fill
           placeholder="blur"
           priority={priority}
-          sizes="(max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 64px) / 3), (max-width: 1280px) calc((100vw - 80px) / 4), 300px"
+          sizes="(max-width: 640px) calc((100vw - 48px) / 2), (max-width: 768px) calc((100vw - 64px) / 3), (max-width: 1024px) calc((100vw - 80px) / 4), (max-width: 1280px) calc((100vw - 96px) / 5), 200px"
           src={product.image}
         />
         <FavoriteButton className="product-card__favorite absolute top-2 right-2" />
         <div className="product-card__overlay absolute bottom-2 left-2 flex flex-col items-start gap-1">
           {discountPercent ? (
-            <span className="product-card__discount inline-flex items-center rounded-md bg-[#f5163a] px-1.5 py-0.5 text-xs font-bold text-white">
+            <span className="product-card__discount bg-sale inline-flex items-center rounded-md px-1.5 py-0.5 text-xs font-bold text-white">
               -{discountPercent}%
             </span>
           ) : null}
@@ -59,10 +59,15 @@ export function ProductCard({ action, priority = false, product }: ProductCardPr
           ) : null}
         </div>
       </Link>
-      <div className="product-card__body flex flex-1 flex-col gap-1.5 p-3">
+      <div className="product-card__body flex flex-1 flex-col gap-1 pt-2">
+        {discountPercent ? (
+          <span className="product-card__good-price bg-accent-soft text-accent inline-flex items-center gap-1 self-start rounded px-1.5 py-0.5 text-[11px] font-medium">
+            👍 Хорошая цена
+          </span>
+        ) : null}
         <ProductPrice oldPrice={product.oldPrice} price={product.price} />
         <Link
-          className="product-card__title line-clamp-2 text-sm text-[#1a1a1a] hover:text-[#cb11ab]"
+          className="product-card__title text-fg hover:text-accent line-clamp-2 text-sm"
           href={routes.product(product.id)}
         >
           {product.title}
@@ -71,7 +76,10 @@ export function ProductCard({ action, priority = false, product }: ProductCardPr
         {product.status !== 'inStock' ? (
           <ProductStatusBadge className="product-card__status self-start" status={product.status} />
         ) : null}
-        {action ? <div className="product-card__action mt-auto pt-2">{action}</div> : null}
+        <p className="product-card__delivery text-muted mt-auto pt-2 text-xs">
+          Доставка <span className="text-fg font-semibold">завтра</span>
+        </p>
+        {action ? <div className="product-card__action pt-2">{action}</div> : null}
       </div>
     </article>
   );

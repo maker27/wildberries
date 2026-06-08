@@ -17,7 +17,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
   return (
     <div className="textarea flex flex-col gap-1">
       {label ? (
-        <label className="textarea__label text-sm font-medium text-[#444]" htmlFor={textareaId}>
+        <label className="textarea__label text-label text-sm font-medium" htmlFor={textareaId}>
           {label}
         </label>
       ) : null}
@@ -25,14 +25,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
         ref={ref}
         className={cn(
           'textarea__field min-h-24 rounded-lg border bg-white px-3 py-2 text-sm transition-colors outline-none',
-          'focus:border-[#cb11ab]',
-          error ? 'border-[#e53935]' : 'border-[#e0e0e0]',
+          'focus:border-accent',
+          error ? 'border-error' : 'border-border',
           className,
         )}
         id={textareaId}
         {...rest}
       />
-      {error ? <span className="textarea__error text-xs text-[#e53935]">{error}</span> : null}
+      {error ? <span className="textarea__error text-error text-xs">{error}</span> : null}
     </div>
   );
 });

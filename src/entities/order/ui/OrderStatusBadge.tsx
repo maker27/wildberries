@@ -9,12 +9,12 @@ type OrderStatusBadgeProps = WithClassName & {
 };
 
 const STAGE_CLASS: Record<OrderStage, string> = {
-  created: 'bg-[#eeeeee] text-[#666]',
-  paid: 'bg-[#e3f2fd] text-[#1565c0]',
-  assembling: 'bg-[#fff3e0] text-[#e65100]',
-  packed: 'bg-[#f3e5f5] text-[#6a1b9a]',
-  inDelivery: 'bg-[#e8f5e9] text-[#2e7d32]',
-  delivered: 'bg-[#cb11ab] text-white',
+  created: 'bg-track text-muted',
+  paid: 'bg-info-soft text-info',
+  assembling: 'bg-warning-soft text-warning',
+  packed: 'bg-purple-soft text-purple',
+  inDelivery: 'bg-success-soft text-success',
+  delivered: 'bg-accent text-white',
 };
 
 export function OrderStatusBadge({ className, stage }: OrderStatusBadgeProps) {

@@ -43,16 +43,16 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
       <div className="product-details__info flex flex-col gap-4">
         <div className="product-details__heading flex items-center gap-2">
-          <h1 className="product-details__title text-2xl font-bold text-[#1a1a1a]">{product.title}</h1>
+          <h1 className="product-details__title text-fg text-2xl font-bold">{product.title}</h1>
           <ProductStatusBadge status={product.status} />
         </div>
         <ProductRating rating={product.rating} reviewsCount={product.reviewsCount} />
         <ProductPrice oldPrice={product.oldPrice} price={product.price} />
 
-        <p className="product-details__description text-sm text-[#444]">{product.description}</p>
+        <p className="product-details__description text-label text-sm">{product.description}</p>
 
         {product.stockNote ? (
-          <p className="product-details__stock-note text-sm text-[#777]">{product.stockNote}</p>
+          <p className="product-details__stock-note text-muted text-sm">{product.stockNote}</p>
         ) : null}
 
         <div className="product-details__cart max-w-xs">
@@ -68,17 +68,17 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         </div>
 
         <div className="product-details__characteristics mt-2">
-          <h2 className="product-details__characteristics-title mb-2 text-lg font-semibold text-[#1a1a1a]">
+          <h2 className="product-details__characteristics-title text-fg mb-2 text-lg font-semibold">
             Характеристики
           </h2>
           <dl className="product-details__characteristics-list flex flex-col gap-2">
             {product.characteristics.map((characteristic) => (
               <div
-                className="product-details__characteristic flex justify-between gap-4 border-b border-[#f0f0f0] py-1 text-sm"
+                className="product-details__characteristic border-border-light flex justify-between gap-4 border-b py-1 text-sm"
                 key={characteristic.name}
               >
-                <dt className="text-[#777]">{characteristic.name}</dt>
-                <dd className="text-right font-medium text-[#1a1a1a]">{characteristic.value}</dd>
+                <dt className="text-muted">{characteristic.name}</dt>
+                <dd className="text-fg text-right font-medium">{characteristic.value}</dd>
               </div>
             ))}
           </dl>

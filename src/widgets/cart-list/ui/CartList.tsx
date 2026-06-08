@@ -69,7 +69,7 @@ export function CartList() {
 
           <div className="cart-list__info flex flex-1 flex-col gap-1">
             <Link
-              className="cart-list__title text-sm font-medium text-[#1a1a1a] hover:text-[#cb11ab]"
+              className="cart-list__title text-fg hover:text-accent text-sm font-medium"
               href={routes.product(item.productId)}
             >
               {item.title}

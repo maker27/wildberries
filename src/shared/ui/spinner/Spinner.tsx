@@ -6,7 +6,7 @@ export function Spinner({ className }: WithClassName) {
     <span
       aria-label="Загрузка"
       className={cn(
-        'spinner inline-block h-6 w-6 animate-spin rounded-full border-2 border-[#e0e0e0] border-t-[#cb11ab]',
+        'spinner border-border border-t-accent inline-block h-6 w-6 animate-spin rounded-full border-2',
         className,
       )}
       role="status"

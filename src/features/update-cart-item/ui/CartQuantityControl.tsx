@@ -9,7 +9,7 @@ type CartQuantityControlProps = {
 };
 
 const buttonClass =
-  'cart-quantity__button flex h-8 w-8 items-center justify-center rounded-lg border border-[#e0e0e0] bg-white text-lg leading-none text-[#1a1a1a] transition-colors hover:border-[#cb11ab] disabled:cursor-not-allowed disabled:opacity-40';
+  'cart-quantity__button flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-white text-lg leading-none text-fg transition-colors hover:border-accent disabled:cursor-not-allowed disabled:opacity-40';
 
 export function CartQuantityControl({ productId, quantity }: CartQuantityControlProps) {
   const updateQuantity = useCartStore((state) => state.updateQuantity);

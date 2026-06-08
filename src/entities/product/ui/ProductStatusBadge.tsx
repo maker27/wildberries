@@ -9,9 +9,9 @@ type ProductStatusBadgeProps = WithClassName & {
 };
 
 const STATUS_CLASS: Record<ProductStatus, string> = {
-  inStock: 'bg-[#e8f5e9] text-[#2e7d32]',
-  lowStock: 'bg-[#fff3e0] text-[#e65100]',
-  outOfStock: 'bg-[#fdecea] text-[#c62828]',
+  inStock: 'bg-success-soft text-success',
+  lowStock: 'bg-warning-soft text-warning',
+  outOfStock: 'bg-error-soft text-error-strong',
 };
 
 export function ProductStatusBadge({ className, status }: ProductStatusBadgeProps) {
